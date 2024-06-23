@@ -1,6 +1,6 @@
 describe("Tests BooksApp", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit('/');
   })
 
   it("Success login", () => {
