@@ -42,3 +42,10 @@ Cypress.Commands.add("login", (email, password) => {
         expect(elements[0].validationMessage).to.be.eql("Заполните это поле.");
       })
  })
+
+ Cypress.Commands.add("addBook", (title, author) => {
+    cy.get('.p-0 > .btn').click();
+    cy.get('#title').type(title);
+    cy.get('#authors').type(author);
+    cy.get('form > .ml-2').click();
+ })

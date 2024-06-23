@@ -23,4 +23,14 @@ describe("Tests BooksApp", () => {
     cy.CheckInputValidity("#mail");
     cy.CheckInputValidity("#pass");
   })
+
+  it("Add book", () => {
+    const title = "Title" + Date.now();
+    const author = "Author" + Date.now();
+
+    cy.login("bropet@mail.ru", 123);
+    cy.addBook(title, author);
+    cy.get('.card-body > .card-title').last().should("have.text", title);
+    cy.get('.card-body > .card-text').last().should("have.text", author);
+  })
 })
