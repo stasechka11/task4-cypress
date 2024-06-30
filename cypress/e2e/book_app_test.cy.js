@@ -3,7 +3,7 @@ describe("Tests BooksApp", () => {
     cy.visit('/');
   })
 
-  it("Success login", () => {
+  it.only("Success login", () => {
     cy.login("bropet@mail.ru", 123);
     cy.contains("Добро пожаловать bropet@mail.ru").should("be.visible");
   })
@@ -44,5 +44,18 @@ describe("Tests BooksApp", () => {
     cy.contains('.card-title', title).parent().parent().contains('button', 'Delete from favorite').should('be.visible');
     cy.get('[href="/favorites"]').click();
     cy.contains('.card-title', title).should('be.visible');
+  })
+
+  it.only("Delete book from favorites", () => {
+    const title = "Title" + Date.now();
+    const author = "Author" + Date.now();
+
+    cy.login("bropet@mail.ru", 123);
+    cy.addBook(title, author);
+    cy.contains('.card-title', title).parent().parent().contains('button', 'Add to favorite').click();
+    cy.contains('.card-title', title).parent().parent().contains('button', 'Delete from favorite').should('be.visible');
+
+    cy.contains('.card-title', title).parent().parent().contains('button', 'Delete from favorite').click();
+    cy.contains('.card-title', title).parent().parent().contains('button', 'Add to favorite').should('be.visible');
   })
 })
