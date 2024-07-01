@@ -3,7 +3,7 @@ describe("Tests BooksApp", () => {
     cy.visit('/');
   })
 
-  it.only("Success login", () => {
+  it("Success login", () => {
     cy.login("bropet@mail.ru", 123);
     cy.contains("Добро пожаловать bropet@mail.ru").should("be.visible");
   })
@@ -46,7 +46,7 @@ describe("Tests BooksApp", () => {
     cy.contains('.card-title', title).should('be.visible');
   })
 
-  it.only("Delete book from favorites", () => {
+  it("Delete book from favorites", () => {
     const title = "Title" + Date.now();
     const author = "Author" + Date.now();
 
